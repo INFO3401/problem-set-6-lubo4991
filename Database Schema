@@ -21,4 +21,4 @@ Table (2): "US_Presidents_DT"
     Column 7: "party" (Text)
     Column 8: "vice" (Text)
     
-These two tables can be conjoined by the presidents name aswell as the years, in which, a president held office/ gave SOTU address. 
+These two tables can be conjoined by the presidents name aswell as the years, in which, a president held office/ gave SOTU address.  
