@@ -1,0 +1,24 @@
+Lucas Bouchard
+10/14/18
+Data Base Schema
+
+Structure:
+
+
+Table (1): "SOTUWordCount_DT" 
+    Column 1: "filename" (Text)
+    Column 2: "Word" (Text)
+    Column 3: "Count" (Integer)
+    
+    
+Table (2): "US_Presidents_DT"
+    Column 1: "Idx" (Integer)
+    Column 2: "number" (Integer)
+    Column 3: "start" (Date)
+    Column 4: "end" (Date)
+    Column 5: "president" (Text)
+    Column 6: "prior" (Text)
+    Column 7: "party" (Text)
+    Column 8: "vice" (Text)
+    
+These two tables can be conjoined by the presidents name aswell as the years, in which, a president held office/ gave SOTU address. 
