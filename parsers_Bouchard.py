@@ -95,7 +95,7 @@ def generateDirectoryCSV(wordCounts, targetfile):
             CSVfile.write(wordfile + "," + str(word) + "," +str(count) + "\n")
         CSVfile.close()
         return 
-generateDirectoryCSV(master_dict, "targetfile3.csv")
+generateDirectoryCSV(master_dict, "targetfile2.csv")
     
     
     # This function should create a CSV containing the word counts generated in
@@ -114,7 +114,7 @@ def generateJSONFile(wordCounts, targetfile):
     JSONfile.write(str(wordCounts).replace("\'", "\""))
     JSONfile.close()
     return JSONfile
-generateJSONFile(master_dict, "targetfile.json")
+generateJSONFile(master_dict, "targetfile3.json")
     # This function should create an containing the word counts generated in
     # part 3. Architect your JSON file such that the hierarchy will allow
     # the user to quickly navigate and compare word counts between files. 
@@ -136,28 +136,29 @@ def searchCSV(csvfile, word):
             if line[1] == word and int(line[2])>largest_count:
                 largest_count=int(line[2])
                 largest_file=line[0]
-        csv_file.close()
         return largest_file
-print(searchCSV("targetfile3.csv", "America"))
+        csv_file.close()
+
     # This function should search a CSV file from part 4 and find the filename
     # with the largest count of a specified word
     # Inputs: A CSV file to search and a word to search for
     # Outputs: The filename containing the highest count of the target word
     
-def searchJSON(JSONfile, word): 
+
+def searchJSON(JSONfile2, word): 
     largest_file= ""
     largest_count=0
-    processed = 0
-    with open(JSONfile) as json_file:
+    with open(JSONfile2) as json_file:
         read_data= json.load(json_file)
         for file in read_data:
-            processed += 1
             if word in read_data[file] and read_data[file][word] > largest_count:
                 largest_count=read_data[file][word]
                 largest_file=file
-        json_file.close()
         return largest_file
-print(searchCSV("targetfile.json", "America")
+        json_file.close()
+
+print(searchCSV("targetfile2.csv", "America"))
+print(searchCSV("targetfile3.json", "America"))
     # This function should search a JSON file from part 5 and find the filename
     # with the largest count of a specified word
     # Inputs: An JSON file to search and a word to search for
