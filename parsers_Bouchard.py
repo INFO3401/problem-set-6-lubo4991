@@ -49,7 +49,7 @@ def generateSimpleCSV(targetfile, wordCounts):
         file.write(str(word) + "," + str(count) + "\n")
     return 
    
-
+    
 generateSimpleCSV('targetfile.csv', wrd_dict) 
 
     # This function should transform a dictionary containing word counts to a
@@ -64,15 +64,11 @@ generateSimpleCSV('targetfile.csv', wrd_dict)
 # PART 3
 ################################################################################
 def countWordsMany(directory): 
-    #csvFile = open(target, 'w')
-    #fileWriter = csv.writer(csvFile)
-    #fileWeiter.writerow(['Word', 'Count'])
-    #for word in wordCounts: 
     
     dir_list = os.listdir(directory)
     wordCountDict = {}
     for file in dir_list:
-        listWordCount = countWordsUnstructured(directory + "/" + file)
+        listWordCount = countWordsUnstructured(directory + "\\" + file)
         wordCountDict[file] = listWordCount
     return wordCountDict
 
@@ -99,7 +95,7 @@ def generateDirectoryCSV(wordCounts, targetfile):
             CSVfile.write(wordfile + "," + str(word) + "," +str(count) + "\n")
         CSVfile.close()
         return 
-generateDirectoryCSV(master_dict, "targetfile2.csv")
+generateDirectoryCSV(master_dict, "targetfile3.csv")
     
     
     # This function should create a CSV containing the word counts generated in
@@ -131,13 +127,37 @@ generateJSONFile(master_dict, "targetfile.json")
 ################################################################################
 # PART 6
 ################################################################################
-#def searchCSV(csvfile, word): 
+def searchCSV(csvfile, word): 
+    largest_file= ""
+    largest_count=0
+    with open(csvfile) as csv_file:
+        file_read = csv.reader(csv_file)
+        for line in file_read:
+            if line[1] == word and int(line[2])>largest_count:
+                largest_count=int(line[2])
+                largest_file=line[0]
+    csv_file.close()
+    return largest_file
+print(searchCSV("targetfile3.csv", "Tonight"))
     # This function should search a CSV file from part 4 and find the filename
     # with the largest count of a specified word
     # Inputs: A CSV file to search and a word to search for
     # Outputs: The filename containing the highest count of the target word
     
-#def searchJSON(JSONfile, word): 
+def searchJSON(JSONfile, word): 
+    largest_file= ""
+    largest_count=0
+    processed = 0
+    with open(JSONfile) as json_file:
+        read_data= json.load(json_file)
+        for file in read_data:
+            processed += 1
+            if word in read_data[file] and read_data[file][word] > largest_count:
+            largest_count=read_data[file][word]
+            largest_file=file
+    json_file.close()
+    return largest file
+print(searchCSV("targetfile.json", "Tonight")
     # This function should search a JSON file from part 5 and find the filename
     # with the largest count of a specified word
     # Inputs: An JSON file to search and a word to search for
@@ -156,7 +176,8 @@ generateJSONFile(master_dict, "targetfile.json")
 #############################################################
 
 #Schema:
-    #Table (1): "SOTUWordCount_DT" 
+
+#Table (1): "SOTUWordCount_DT" 
     #Column 1: "filename" (text)
     #Column 2: "Word" (text)
     #Column 3: "Count" (real)
@@ -176,11 +197,11 @@ generateJSONFile(master_dict, "targetfile.json")
 
 #Implemeting this schema into a database
 
-conn = sqlite3.connect('President_SOTU.db')
-c = conn.cursor()
-c.execute(''' CREATE TABLE SOTUWordCount_DT (filename text, Word text, Count real)''')
-c.execute(''' CREATE TABLE US_Presidents_DT (Idx real, number real, start date, end date, president text, prior text, party text, vice text)''')
-conn.commit()
-conn.close()
+#conn = sqlite3.connect('President_SOTU.db')
+#c = conn.cursor()
+#c.execute(''' CREATE TABLE SOTUWordCount_DT (filename text, Word text, Count real)''')
+#c.execute(''' CREATE TABLE US_Presidents_DT (Idx real, number real, start date, end date, president text, prior text, party text, vice text)''')
+#conn.commit()
+#conn.close()
 
     
