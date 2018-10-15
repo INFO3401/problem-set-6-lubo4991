@@ -50,7 +50,7 @@ def generateSimpleCSV(targetfile, wordCounts):
     return 
    
     
-generateSimpleCSV('targetfile.csv', wrd_dict) 
+generateSimpleCSV('targetfile.csv',wrd_dict) 
 
     # This function should transform a dictionary containing word counts to a
     # CSV file. The first row of the CSV should be a header noting: 
@@ -68,7 +68,7 @@ def countWordsMany(directory):
     dir_list = os.listdir(directory)
     wordCountDict = {}
     for file in dir_list:
-        listWordCount = countWordsUnstructured(directory + "\\" + file)
+        listWordCount = countWordsUnstructured(directory + "/" + file)
         wordCountDict[file] = listWordCount
     return wordCountDict
 
@@ -110,10 +110,10 @@ generateDirectoryCSV(master_dict, "targetfile2.csv")
 # PART 5
 ################################################################################
 def generateJSONFile(wordCounts, targetfile):
-    JSONfile=open(targetfile, "w")
-    JSONfile.write(str(wordCounts).replace("\'", "\""))
-    JSONfile.close()
-    return JSONfile
+    JSON_file=open(targetfile, "w")
+    JSON_file.write(str(wordCounts).replace("\'", "\""))
+    JSON_file.close()
+    return JSON_file
 generateJSONFile(master_dict, "targetfile3.json")
     # This function should create an containing the word counts generated in
     # part 3. Architect your JSON file such that the hierarchy will allow
@@ -130,11 +130,11 @@ generateJSONFile(master_dict, "targetfile3.json")
 def searchCSV(csvfile, word): 
     largest_file= ""
     largest_count=0
-    with open(csvfile) as csv_file:
-        file_read = csv.reader(csv_file, delimiter=',')
+    with open(csvfile, 'r') as csv_file:
+        file_read = csv.reader(csv_file)
         for line in file_read:
             if line[1] == word and int(line[2])>largest_count:
-                largest_count=int(line[2])
+                largest_count= int(line[2])
                 largest_file=line[0]
         return largest_file
         csv_file.close()
@@ -145,17 +145,15 @@ def searchCSV(csvfile, word):
     # Outputs: The filename containing the highest count of the target word
     
 
-def searchJSON(JSONfile2, word): 
+def searchJSON(JSONfile, word): 
     largest_file= ""
     largest_count=0
-    with open(JSONfile2) as json_file:
+    with open(JSONfile, "r") as json_file:
         read_data= json.load(json_file)
-        for file in read_data:
-            if read_data[file][word]>largest_count:
-                
-            #if word in read_data[file] and read_data[file][word] > largest_count:
-                largest_count=read_data[file][word]
-                largest_file=file
+        for file in read_data:                
+            if word in read_data[file] and read_data[file][word] > largest_count:
+                largest_count= read_data[file][word]
+                largest_file= file
         return largest_file
         json_file.close()
 
@@ -200,11 +198,11 @@ print(searchJSON("targetfile3.json", "America"))
 
 #Implemeting this schema into a database
 
-#conn = sqlite3.connect('President_SOTU.db')
-#c = conn.cursor()
-#c.execute(''' CREATE TABLE SOTUWordCount_DT (filename text, Word text, Count real)''')
-#c.execute(''' CREATE TABLE US_Presidents_DT (Idx real, number real, start date, end date, president text, prior text, party text, vice text)''')
-#conn.commit()
-#conn.close()
+conn = sqlite3.connect('President_SOTU.db')
+c = conn.cursor()
+c.execute(''' CREATE TABLE SOTUWordCount_DT (filename text, Word text, Count real)''')
+c.execute(''' CREATE TABLE US_Presidents_DT (Idx real, number real, start date, end date, president text, prior text, party text, vice text)''')
+conn.commit()
+conn.close()
 
     
