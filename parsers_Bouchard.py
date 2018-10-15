@@ -1,7 +1,7 @@
 ################################################################################
 
 
-#Collaberation with myself, Justin, Harold, Steven, and Zach 
+#Collaberation with myself, Harold, Steven, Zach, and Marissa
 
 # PART #1
 ################################################################################
@@ -88,13 +88,14 @@ master_dict = countWordsMany('./state-of-the-union-corpus-1989-2017')
 # PART 4
 ################################################################################
 def generateDirectoryCSV(wordCounts, targetfile): 
-    CSVfile=open(targetfile, 'w')
-    CSVfile.write("filename, Word, Count\n")
-    for wordfile, dict in wordCounts.items():
-        for word, count in dict.items():
-            CSVfile.write(wordfile + "," + str(word) + "," +str(count) + "\n")
-        CSVfile.close()
-        return 
+    with open(targetfile, 'w') as gen_file:
+        CSVfile = csv.writer(gen_file)
+        CSVfile.writerow(["Filename", "Word", "Count"])
+        for key, value in wordCounts.items():
+            CSVfile.writerow([key, value])
+        gen_file.close()
+    return gen_file
+  
 generateDirectoryCSV(master_dict, "targetfile2.csv")
     
     
@@ -159,6 +160,7 @@ def searchJSON(JSONfile, word):
 
 print(searchCSV("targetfile2.csv", "America"))
 print(searchJSON("targetfile3.json", "America"))
+#Cant get any of this to work
     # This function should search a JSON file from part 5 and find the filename
     # with the largest count of a specified word
     # Inputs: An JSON file to search and a word to search for
