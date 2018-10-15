@@ -154,6 +154,28 @@ generateJSONFile(master_dict, "targetfile.json")
 # Problem set 6, part 3
 
 #############################################################
+
+#Schema:
+    #Table (1): "SOTUWordCount_DT" 
+    #Column 1: "filename" (text)
+    #Column 2: "Word" (text)
+    #Column 3: "Count" (real)
+    
+    
+#Table (2): "US_Presidents_DT"
+    #Column 1: "Idx" (real)
+    #Column 2: "number" (real)
+    #Column 3: "start" (Date)
+    #Column 4: "end" (Date)
+    #Column 5: "president" (text)
+    #Column 6: "prior" (text)
+    #Column 7: "party" (text)
+    #Column 8: "vice" (text)
+    
+#These two tables can be conjoined by the presidents name aswell as the years, in which, a president held office/ gave SOTU address.  
+
+#Implemeting this schema into a database
+
 conn = sqlite3.connect('President_SOTU.db')
 c = conn.cursor()
 c.execute(''' CREATE TABLE SOTUWordCount_DT (filename text, Word text, Count real)''')
