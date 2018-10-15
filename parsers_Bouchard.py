@@ -1,7 +1,7 @@
 ################################################################################
 
 
-#Collaberation with myself, Harold, Steven, Zach, and Marissa
+#Collaberation with myself, Harold, Steven, Marissa, and Zach 
 
 # PART #1
 ################################################################################
@@ -47,7 +47,7 @@ def generateSimpleCSV(targetfile, wordCounts):
     for word in wordCounts:
         count = wordCounts[word]
         file.write(str(word) + "," + str(count) + "\n")
-    return 
+    return wordCounts
    
     
 generateSimpleCSV('targetfile.csv',wrd_dict) 
@@ -94,10 +94,12 @@ def generateDirectoryCSV(wordCounts, targetfile):
         for key, value in wordCounts.items():
             CSVfile.writerow([key, value])
         gen_file.close()
-    return gen_file
-  
-generateDirectoryCSV(master_dict, "targetfile2.csv")
+    return gen_file    
     
+        
+
+generateDirectoryCSV(master_dict, "targetfile2.csv")
+
     
     # This function should create a CSV containing the word counts generated in
     # part 3 with the header: 
