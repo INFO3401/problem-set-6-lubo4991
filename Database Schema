@@ -8,12 +8,12 @@ Structure:
 Table (1): "SOTUWordCount_DT" 
     Column 1: "filename" (Text)
     Column 2: "Word" (Text)
-    Column 3: "Count" (Integer)
+    Column 3: "Count" (REAL)
     
     
 Table (2): "US_Presidents_DT"
-    Column 1: "Idx" (Integer)
-    Column 2: "number" (Integer)
+    Column 1: "Idx" (REAL)
+    Column 2: "number" (REAL)
     Column 3: "start" (Date)
     Column 4: "end" (Date)
     Column 5: "president" (Text)

@@ -10,6 +10,7 @@ import os
 from os import listdir
 import csv
 import json
+import sqlite3
 
 def countWordsUnstructured(filename):
     wordcounts={}
@@ -146,3 +147,18 @@ generateJSONFile(master_dict, "targetfile.json")
 
 # +1 bonus point for figuring out how many datapoints you had to process to 
 # compute this value
+
+##########################################################################
+
+# Implementing Data Base Schema
+# Problem set 6, part 3
+
+#############################################################
+conn = sqlite3.connect('President_SOTU.db')
+c = conn.cursor()
+c.execute(''' CREATE TABLE SOTUWordCount_DT (filename text, Word text, Count real)''')
+c.execute(''' CREATE TABLE US_Presidents_DT (Idx real, number real, start date, end date, president text, prior text, party text, vice text)''')
+conn.commit()
+conn.close()
+
+    
