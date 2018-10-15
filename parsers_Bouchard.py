@@ -136,9 +136,9 @@ def searchCSV(csvfile, word):
             if line[1] == word and int(line[2])>largest_count:
                 largest_count=int(line[2])
                 largest_file=line[0]
-    csv_file.close()
-    return largest_file
-print(searchCSV("targetfile3.csv", "Tonight"))
+        csv_file.close()
+        return largest_file
+print(searchCSV("targetfile3.csv", "America"))
     # This function should search a CSV file from part 4 and find the filename
     # with the largest count of a specified word
     # Inputs: A CSV file to search and a word to search for
@@ -153,11 +153,11 @@ def searchJSON(JSONfile, word):
         for file in read_data:
             processed += 1
             if word in read_data[file] and read_data[file][word] > largest_count:
-            largest_count=read_data[file][word]
-            largest_file=file
-    json_file.close()
-    return largest file
-print(searchCSV("targetfile.json", "Tonight")
+                largest_count=read_data[file][word]
+                largest_file=file
+        json_file.close()
+        return largest_file
+print(searchCSV("targetfile.json", "America")
     # This function should search a JSON file from part 5 and find the filename
     # with the largest count of a specified word
     # Inputs: An JSON file to search and a word to search for
